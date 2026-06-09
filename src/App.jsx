@@ -1,15 +1,11 @@
-import { useState } from 'react'
-import './App.css'
+import { useEffect, useState } from "react"
+import HomePage from "./components/templates/homePage"
 
 function App() {
   
   return (
     <>
-      
-
-      <h1>hi</h1>
-
-    
+  <HomePage/>
     </>
   )
 }
