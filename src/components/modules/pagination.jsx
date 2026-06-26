@@ -12,17 +12,22 @@ export default function Pagination({page,setPage}){
    }
 
     return(
-        <div>
-        <button onClick={prevHandler}>prev</button>
-        <span style={{color:page===1?"red":"inherit"}}>1</span>
-        <span style={{color:page===2?"red":"inherit"}}>2</span>
+        <div className={styles.pagination}>
+        <button onClick={prevHandler} className={page===1 ? styles.disable :null}>prev</button>
+        <p className={page===1 ?styles.selected:null}>1</p>
+        <p className={page===2 ?styles.selected:null}>2</p>
         {page>2 && page <=8 &&(
-            <span >...<span style={{color:"red"}}>{page}</span>...</span>
+            <>
+            
+            <span>...</span>
+            <p className={styles.selected}>{page}</p>
+            </>
         )}
-        <span style={{color:page===9?"red":"inherit"}}>9</span>
-        <span style={{color:page===10?"red":"inherit"}}>10</span>
+        <span>...</span>
+        <p className={page===9 ?styles.selected:null}>9</p>
+        <p className={page===10 ?styles.selected:null}>10</p>
         
-        <button onClick={nextHandler} >next</button>
+        <button onClick={nextHandler} className={page===10 ?styles.disable:null} >next</button>
         </div>
     )
 }

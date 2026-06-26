@@ -15,13 +15,13 @@ h4{
     justify-content: space-between;
     
 }
-button{
+.emailInput button{
     background-color: white;
     padding: 8px 20px;
     border-radius: 8px;
     font-size: 15px;
 }
-button:hover{
+.emailInput button:hover{
     cursor: pointer;
     background-color: bisque;
     transition: all .4s ease;
