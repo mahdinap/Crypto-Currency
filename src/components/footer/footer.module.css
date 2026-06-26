@@ -15,15 +15,17 @@ h4{
     justify-content: space-between;
     
 }
-.emailInput button{
-    background-color: white;
+.emailBox button{
+    background-color: #3874ff;
     padding: 8px 20px;
     border-radius: 8px;
     font-size: 15px;
+    color: #fff;
+    border: none;
 }
-.emailInput button:hover{
+.emailBox button:hover{
     cursor: pointer;
-    background-color: bisque;
+    background-color: #0343d8;
     transition: all .4s ease;
 }
 .footerNote{
@@ -41,6 +43,7 @@ h4{
     padding: 8px 20px;
     border-radius: 8px;
     margin-right: 4px;
+    border: none;
 }
 .downfooter{
     margin-top: 50px;
