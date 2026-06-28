@@ -32,8 +32,8 @@ export default function Search({cur,setCur}){
             <option value="jpy">JPY</option>
         </select>
         <div>
-            {loading ?<RotatingLines width={50} />:<ul>
-                {list.map((item)=><li key={item.id}><img src={item.thumb} alt="logo" />{item.name}</li>)}
+            {loading ?<RotatingLines width={50} />:<ul className={styles.mainList}>
+                {list.map((item)=><li key={item.id} className={styles.resultitem}><img src={item.thumb} alt="logo" />{item.name}</li>)}
             </ul>}
             
         </div>
