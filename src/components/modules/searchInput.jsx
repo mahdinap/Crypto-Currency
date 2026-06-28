@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react"
 import styles from "./searchInput.module.css"
 import { searchList } from "../services/cryptoAPI"
+import { RotatingLines } from "react-loader-spinner"
 export default function Search({cur,setCur}){
     const [text,setText]=useState("")
     const [list,setList]=useState([])
+    const [loading,setLoading]=useState(false)
     useEffect(()=>{
         if (!text) return
         
         const searchitem=async ()=>{
             const data=await fetch(searchList(text))
             const listJson=await data.json()
-            if(listJson.coins) setList(listJson.coins)
+
+            if(listJson.coins) {
+                setList(listJson.coins)
+                setLoading(false)}
         }
-        searchitem()
+    setLoading(true)
+    searchitem()
         console.log(list);
     }
     ,[text])
@@ -26,9 +32,10 @@ export default function Search({cur,setCur}){
             <option value="jpy">JPY</option>
         </select>
         <div>
-            <ul>
+            {loading ?<RotatingLines width={50} />:<ul>
                 {list.map((item)=><li key={item.id}><img src={item.thumb} alt="logo" />{item.name}</li>)}
-            </ul>
+            </ul>}
+            
         </div>
         </>
     )
