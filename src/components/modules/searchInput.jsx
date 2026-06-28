@@ -3,7 +3,7 @@ import styles from "./searchInput.module.css"
 import { searchList } from "../services/cryptoAPI"
 export default function Search({cur,setCur}){
     const [text,setText]=useState("")
-    const [list,setList]=useState()
+    const [list,setList]=useState([])
     useEffect(()=>{
         if (!text) return
         
@@ -25,6 +25,11 @@ export default function Search({cur,setCur}){
             <option value="eur">EUR</option>
             <option value="jpy">JPY</option>
         </select>
+        <div>
+            <ul>
+                {list.map((item)=><li key={item.id}><img src={item.thumb} alt="logo" />{item.name}</li>)}
+            </ul>
+        </div>
         </>
     )
 }
