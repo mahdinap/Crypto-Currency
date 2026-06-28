@@ -24,7 +24,7 @@ export default function HomePage(){
     return(
         <>
         <Search cur={cur} setCur={setCur}/>
-        <TablesCoins coins={coins} loader={isloaded}/>
+        <TablesCoins coins={coins} loader={isloaded} cur={cur}/>
         <Pagination page={page} setPage={setPage}/>
         </>
     )

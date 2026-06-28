@@ -3,7 +3,7 @@ import ChartUp from "../../assets/chart-up.svg"
 import { RotatingLines } from "react-loader-spinner";
 import styles from "./tableCoins.module.css"
 
-export default function TablesCoins({coins,loader}){
+export default function TablesCoins({coins,loader,cur}){
    
     console.log(coins);
     
@@ -15,7 +15,7 @@ export default function TablesCoins({coins,loader}){
             <tr>
                 <th>Coin</th>
                 <th>Name</th>
-                <th>Price</th>
+                <th>Price ({cur.toUpperCase()})</th>
                 <th>24h</th>
                 <th>Total Volume</th>
                 <th>Chart</th>
@@ -53,7 +53,7 @@ const TableRow=({coin})=>{
             <td><div className={styles.symbol}><img src={coin.image}/><span>{coin.symbol?coin.symbol.toUpperCase():"-"}</span></div></td>
             <td>{displayStrings(coin.name)}</td>
             <td>{displayNumbersToLocaleString(coin.current_price)}</td>
-            <td className={coin.price_change_percentage_24h>0?styles.green:styles.red}>{displayNumbersToFixed(coin.price_change_percentage_24h)}</td>
+            <td className={coin.price_change_percentage_24h>0?styles.green:styles.red}>{displayNumbersToFixed(coin.price_change_percentage_24h)}%</td>
             <td>{displayNumbersToLocaleString(coin.total_volume) }</td>  
             <td><img src={coin.price_change_percentage_24h > 0 ? ChartUp :ChartDown}/></td>
             </tr>
