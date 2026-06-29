@@ -25,7 +25,7 @@ export default function Search({cur,setCur}){
 
     return(
         <>
-        <input type="text" placeholder="Search" value={text} onChange={(e)=>setText(e.target.value)} />
+        <input type="text" placeholder="Search" value={text} onChange={(e)=>setText(e.target.value)} className={styles.searchInput}/>
         <select  value={cur} onChange={(e)=>setCur(e.target.value)} className={styles.select}>
             <option value="usd">USD</option>
             <option value="eur">EUR</option>
