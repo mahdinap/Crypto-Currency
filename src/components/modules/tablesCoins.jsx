@@ -3,7 +3,7 @@ import ChartUp from "../../assets/chart-up.svg"
 import { RotatingLines } from "react-loader-spinner";
 import styles from "./tableCoins.module.css"
 
-export default function TablesCoins({coins,loader,cur}){
+export default function TablesCoins({coins,loader,cur,chart,setChart}){
    
     console.log(coins);
     
@@ -23,7 +23,7 @@ export default function TablesCoins({coins,loader,cur}){
             <tbody>
                 
                     {coins.map((coin)=>(
-                        <TableRow key={coin.id} coin={coin}/>
+                        <TableRow key={coin.id} coin={coin} setChart={setChart}/>
                     )       
                     )}
                 
@@ -33,7 +33,7 @@ export default function TablesCoins({coins,loader,cur}){
         </div>
     )
 }
-const TableRow=({coin})=>{
+const TableRow=({coin,setChart})=>{
      const displayStrings=(value)=>{
         if (value===null || value ===undefined || value ===""){
             return "-"
@@ -47,7 +47,9 @@ const TableRow=({coin})=>{
     const displayNumbersToFixed=(value)=>{
         return value !=null ?value.toFixed(2):"-"
     }
-   
+    const showHandlerChart=()=>{
+        setChart(true)
+    }
     return(
         <tr >
             <td><div className={styles.symbol}><img src={coin.image}/><span>{coin.symbol?coin.symbol.toUpperCase():"-"}</span></div></td>
@@ -55,7 +57,7 @@ const TableRow=({coin})=>{
             <td>{displayNumbersToLocaleString(coin.current_price)}</td>
             <td className={coin.price_change_percentage_24h>0?styles.green:styles.red}>{displayNumbersToFixed(coin.price_change_percentage_24h)}%</td>
             <td>{displayNumbersToLocaleString(coin.total_volume) }</td>  
-            <td><img src={coin.price_change_percentage_24h > 0 ? ChartUp :ChartDown}/></td>
+            <td onClick={showHandlerChart}><img src={coin.price_change_percentage_24h > 0 ? ChartUp :ChartDown}/></td>
             </tr>
     )
 }

@@ -31,10 +31,18 @@ export default function Search({cur,setCur}){
             <option value="eur">EUR</option>
             <option value="jpy">JPY</option>
         </select>
+
         <div>
-            {loading ?<RotatingLines width={50} />:<ul className={list.length!=0?styles.mainList:styles.hide}>
+            { !!list.length &&
+            <div>
+                {loading ?<RotatingLines width={50} height={50} 
+            strokeWidth={2} strokeColor="#3874ff"/>:<ul className={styles.mainList}>
                 {list.map((item)=><li key={item.id} className={styles.resultitem}><img src={item.thumb} alt="logo" /><div><p className={styles.itemName}>{item.name}</p><p className={styles.itemSymbol}>{item.symbol}</p></div></li>)}
-            </ul>}
+            </ul>} 
+            </div>
+            }
+            
+            
             
         </div>
         </>
