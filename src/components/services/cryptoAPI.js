@@ -9,4 +9,7 @@ const getCoinList=(page,cur)=>{
 const searchList=(text)=>{
     return(`${BASE_URL}/search?query=${text}&x_cg_demo_api_key=${API_KEY}`)
 }
-export {getCoinList,searchList}
+const getChart=(id)=>{
+    return (`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=7&x_cg_demo_api_key=${API_KEY}`)
+}
+export {getCoinList,searchList,getChart}

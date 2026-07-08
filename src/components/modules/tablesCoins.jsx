@@ -2,6 +2,7 @@ import ChartDown from "../../assets/chart-down.svg"
 import ChartUp from "../../assets/chart-up.svg"
 import { RotatingLines } from "react-loader-spinner";
 import styles from "./tableCoins.module.css"
+import { getChart } from "../services/cryptoAPI";
 
 export default function TablesCoins({coins,loader,cur,chart,setChart}){
    
@@ -43,13 +44,25 @@ const TableRow=({coin,setChart})=>{
     const displayNumbersToLocaleString=(value)=>{
        return value !=null ? value.toLocaleString():"-"
 
-    }
+    }   
     const displayNumbersToFixed=(value)=>{
         return value !=null ?value.toFixed(2):"-"
     }
-    const showHandlerChart=()=>{
-        setChart(true)
-    }
+
+    const showHandlerChart=async()=>{
+        
+            try {
+                const res=await fetch(getChart(coin.id))
+                const json=await res.json()
+                console.log(json);
+                setChart(json)
+            } catch (error) {
+                setChart(null)
+            }
+
+        }
+    
+
     return(
         <tr >
             <td><div className={styles.symbol}><img src={coin.image}/><span>{coin.symbol?coin.symbol.toUpperCase():"-"}</span></div></td>
