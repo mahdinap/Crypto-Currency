@@ -1,5 +1,12 @@
+import { useState } from "react"
 import styles from "./chart.module.css"
-export default function Chart({setChart,Chart}){
+import { convertData } from "../../helpers/convertData";
+
+export default function Chart({setChart,chart}){
+    const [type,setType]=useState("prices")
+    console.log(convertData(chart,type));
+    
+    
     return(
         <>
         <div className={styles.container}>
