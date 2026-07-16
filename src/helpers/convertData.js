@@ -1,7 +1,8 @@
+import {formatDate} from "./formatDate"
 const convertData = (data,type) => {
     const dataConverted= data[type].map((item)=>{
         return {
-            time:item[0],
+            time: item[0],
             price:item[1]
         }
     })

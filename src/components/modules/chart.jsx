@@ -2,7 +2,7 @@ import { useState } from "react"
 import styles from "./chart.module.css"
 import { convertData } from "../../helpers/convertData";
 import { Legend, LineChart,CartesianGrid,Line,Tooltip,XAxis,YAxis, ResponsiveContainer } from "recharts";
-
+import { formatDate } from "../../helpers/formatDate";
 
 export default function Chart({setChart,chart}){
     const [type,setType]=useState("prices")
@@ -22,12 +22,26 @@ export default function Chart({setChart,chart}){
                     data={convertData(chart,type)}
                     >
                     <CartesianGrid strokeDasharray="3 3" stroke="#404042" />
-                    <XAxis dataKey="time" stroke="#fff" />
+                    <XAxis dataKey="time" stroke="#fff" tickFormatter={formatDate} hide/>
 
-                    <YAxis data={type} width="auto" stroke="#fff" domain={["auto","auto"]}/>
+                    <YAxis  width="auto" stroke="#fff" domain={["auto","auto"]}/>
 
-                    <Tooltip/>
-
+  <Tooltip
+  formatter={(value) => `$${Math.round(value).toLocaleString("en-US")}`}
+    labelFormatter={formatDate}
+    contentStyle={{
+        backgroundColor: "#222",
+        color: "#fff",
+        border: "1px solid #555",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "column",
+    }}
+    labelStyle={{
+        color: "#fff"
+    }}
+/>
                     <Legend/>
 
                     <Line
@@ -38,7 +52,9 @@ export default function Chart({setChart,chart}){
                     
                     </LineChart>
                     </ResponsiveContainer>
+                    
                 </div>
+                
             </div>
         </div>
         
