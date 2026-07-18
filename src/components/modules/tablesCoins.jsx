@@ -70,7 +70,7 @@ const TableRow=({coin,setChart})=>{
             <td>{displayNumbersToLocaleString(coin.current_price)}</td>
             <td className={coin.price_change_percentage_24h>0?styles.green:styles.red}>{displayNumbersToFixed(coin.price_change_percentage_24h)}%</td>
             <td>{displayNumbersToLocaleString(coin.total_volume) }</td>  
-            <td onClick={showHandlerChart}><img src={coin.price_change_percentage_24h > 0 ? ChartUp :ChartDown}/></td>
+            <td className={styles.rang} onClick={showHandlerChart}><img src={coin.price_change_percentage_24h > 0 ? ChartUp :ChartDown}/></td>
             </tr>
     )
 }

@@ -48,6 +48,9 @@
 .green{
     color: #57bc7c;
 }
+.rang{
+    cursor: pointer;
+}
 @media(max-width:600px){
     .table{
         display: block;
