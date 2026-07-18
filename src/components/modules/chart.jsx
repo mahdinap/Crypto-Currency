@@ -7,13 +7,19 @@ import { formatDate } from "../../helpers/formatDate";
 export default function Chart({setChart,chart}){
     const [type,setType]=useState("prices")
     console.log(convertData(chart,type));
-    // convertData(chart,type)
+    // convertData(chart,type)=
+    console.log(chart);
+    
     
     return(
         <>
         <div className={styles.container}>
             <span onClick={()=>setChart(null)} className={styles.cross}>X</span>
             <div className={styles.chart}>
+            <div className={styles.name}>
+                <img src={chart.coins.image} alt="img" />
+                <p>{chart.coins.id}</p>
+            </div>
 
                 <div className={styles.graph}>
                     <ResponsiveContainer width="100%" height="100%">
@@ -42,11 +48,11 @@ export default function Chart({setChart,chart}){
         color: "#fff"
     }}
 />
-                    <Legend/>
+                    <Legend />
 
                     <Line
                     type="monotone"
-                    dataKey="price"
+                    dataKey={type}
                     stroke="#3874ff"
                     strokeWidth="2px"/>
                     
@@ -54,7 +60,16 @@ export default function Chart({setChart,chart}){
                     </ResponsiveContainer>
                     
                 </div>
-                
+                <div className={styles.types}>
+                <button className={type==="prices"? styles.selected:null} onClick={()=>setType("prices")}>Price</button>
+                <button className={type==="market_caps"? styles.selected :null} onClick={()=>setType("market_caps")}>Market Cap</button>
+                <button className={type==="total_volumes"?styles.selected:null} onClick={()=>setType("total_volumes")}>Volume</button>
+                </div>
+                <div className={styles.details}>
+                    <div><p>Pricse:</p><span>${chart.coins.current_price}</span></div>
+                    <div><p>ATh:</p><span>${chart.coins.ath}</span></div>
+                    <div><p>Market Cap:</p><span>{chart.coins.market_cap}</span></div>
+                </div>
             </div>
         </div>
         

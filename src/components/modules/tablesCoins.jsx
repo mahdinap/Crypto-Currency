@@ -55,7 +55,7 @@ const TableRow=({coin,setChart})=>{
                 const res=await fetch(getChart(coin.id))
                 const json=await res.json()
                 console.log(json);
-                setChart(json)
+                setChart({...json,coins:coin})
             } catch (error) {
                 setChart(null)
             }
