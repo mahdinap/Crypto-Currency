@@ -7,7 +7,9 @@ export default function Search({cur,setCur}){
     const [list,setList]=useState([])
     const [loading,setLoading]=useState(false)
     useEffect(()=>{
-        if (!text) return
+        if (!text) {
+            setList([])
+            return}
         
         const searchitem=async ()=>{
             const data=await fetch(searchList(text))
